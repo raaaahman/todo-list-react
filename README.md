@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# La Todo List React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Le but de l'exercice est de créer une application "Todo List" en React.
 
-## Available Scripts
+## Mise en place
 
-In the project directory, you can run:
+1. Télécharger le code source et ouvrir une invite de commande dans le dossier.
+2. Installer les dépendances avec la commande `npm install`
+3. Démarrer le serveur de développement avec la commande `npm start`
+4. Ouvrir la page `http://localhost:3000/doc`, elle contient la documentation de l'API qui va permettre de stocker les tâches faites et à faire.
+    - Un serveur de susbstitution rend cette API fonctionnelle **pour le développement uniquement**.
+    - Cette page est interactive, vous pouvez essayer chaque route de l'API en cliquant sur le bouton, le résultat vous sera retourné au format JSON.
+5. Ouvrir le fichier `server/db.json`, vous pouvez y observer des données provisoires qui vont servir au test de notre application.
+    - Les données vont être modifiées lors des tests que vous allez effectuer.
+    - Vous pouvez vous même ajouter/supprimer ou modifier des données dans ce fichier durant le développement.
 
-### `npm start`
+## Exercices
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Partie 1: Découverte de l'API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Afin de vous familiariser avec l'API mise en place, mais également avec la méthode `fetch()` du navigateur, vous allez coder des fonctions permettant de lire et modifier les données.
 
-### `npm test`
+1. Ouvrir le fichier `src/api.js`, il contient des fonctions à remplir. Chaque fonction a un _bloc de documentation_ qui décrit succintement ce qu'elle est sensée accomplir, les paramètres qu'elle reçoit et la valeur qu'elle doit retourner.
+2. Du code permettant de vérifier l'exécution de ces fonctions a été écrit. Pour vérifier le résultat de vos fonctions, décommentez le.
+3. Ouvrir la page `https://localhost:3000/` dans votre navigateur, et ouvrir la console pour voir les messages s'afficher (`ctrl + maj + k` sous Firefox, sinon _Menu > Outils supplémentaires > Outils de développement > Console_).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Partie 2: React
 
-### `npm run build`
+Il s'agit de "connecter" l'API avec une interface d'application en React.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Si vous avez une application de todo list déjà créée en React, vous pouvez copier/coller son code dans le dossier `src` (attention à ne pas supprimer votre fichier `api.js`).
+2. Vous pouvez réutiliser le code créer dans `api.js` avec quelques modifications: au lieu de modifier le tableau `todos`, il devra se servir des Hooks que vous aurez mis en place.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Ressources
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- _Récupérer des données du serveur, API web côté client, JavaScript, Apprendre le développement web_, Mozilla Developers Network, [https://developer.mozilla.org/fr/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data)
+- _Gérer les opérations asynchrones avec élégance grâce aux promesses, JavaScript asynchrone, JavaScript, Apprendre le développement web_, Mozilla Developers, [https://developer.mozilla.org/fr/docs/Learn/JavaScript/Asynchronous/Promises](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Asynchronous/Promises)
+- _Démarrer avec React, Comprendre les frameworks Javascript côté client, Outils et tests, Apprendre le développement web_, Mozilla Developers Network, [https://developer.mozilla.org/fr/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started](https://developer.mozilla.org/fr/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started) (EN-US)
+- _Apperçu des Hooks, Docs_, reactjs.org, [https://fr.reactjs.org/docs/hooks-overview.html](https://fr.reactjs.org/docs/hooks-overview.html)
