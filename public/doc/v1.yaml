@@ -126,7 +126,7 @@ paths:
       parameters:
       - name: "todoId"
         in: "path"
-        description: "Pet id to delete"
+        description: "Identifiant de la tâche à supprimer"
         required: true
         type: "integer"
         format: "int64"
