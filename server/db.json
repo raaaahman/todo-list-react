@@ -1,0 +1,64 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "label": "Faire la vaiselle",
+      "complete": false,
+      "creationDate": "2022-02-02T12:30:00+01:00",
+      "ownerUsername": "admin",
+      "categoryId": 0
+    },
+    {
+      "id": 2,
+      "label": "Télécharger le devoir de React",
+      "complete": true,
+      "creationDate": "2022-02-05T16:45:00+01:00",
+      "ownerUsername": "admin"
+    },
+    {
+      "label": "string",
+      "complete": false,
+      "creationDate": "2022-03-06T14:09:08.744Z",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "label": "Modified todo",
+      "complete": true,
+      "creationDate": "2022-03-06T15:04:16.657Z",
+      "lastModificationDate": "2022-03-06T15:04:16.657Z",
+      "apiId": "v1"
+    },
+    {
+      "id": 5,
+      "label": "Surfer",
+      "complete": false,
+      "creationDate": "2022-03-06T14:59:31.894Z",
+      "lastModificationDate": "2022-03-06T14:59:31.894Z",
+      "apiId": "v1"
+    },
+    {
+      "id": 6,
+      "label": "Surfer",
+      "complete": false,
+      "creationDate": "2022-03-06T14:59:31.894Z",
+      "lastModificationDate": "2022-03-06T14:59:31.894Z",
+      "apiId": "v1"
+    }
+  ],
+  "categories": [
+    {
+      "id": 0,
+      "name": "General"
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "username": "admin",
+      "email": "admin@mail.local",
+      "password": "bigmustache",
+      "role": 0
+    }
+  ]
+}

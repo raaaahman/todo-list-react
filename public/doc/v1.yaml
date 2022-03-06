@@ -1,0 +1,161 @@
+swagger: "2.0"
+info:
+  description: "Ceci est une API pour la creation d'un programme de 'Todo List'."
+  version: "1.0"
+  title: "Todo List"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/api/v1"
+tags:
+- name: "todos"
+  description: "Affiche ou modifie les tâches enregistrées"
+schemes:
+- "http"
+paths:
+  /todos:
+    get:
+      tags:
+        - "todos"
+      summary: "Liste toutes les tâches"
+      description: ""
+      operationId: "listTodo"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "_page"
+          description: "Un numéro pour ne recevoir qu'un sous-ensemble des tâches. Par défaut 10 tâches sont retournées par \"page\"."
+          required: false
+          type: "interger"
+          format: "int64"
+        - in: "query"
+          name: "_limit"
+          description: "Un nombre qui indique le nombre de tâches à afficher par \"page\"."
+          required: false
+          type: "interger"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+    post:
+      tags:
+      - "todos"
+      summary: "Ajouter une nouvelle tâche"
+      description: ""
+      operationId: "addTodo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Tâche à ajouter à la liste"
+        required: true
+        schema:
+          $ref: "#/definitions/Todo"
+      responses:
+        "405":
+          description: "Invalid input"
+  /todos/{todoId}:
+    get:
+      tags:
+      - "todos"
+      summary: "Retrouve une tâche par son identifiant"
+      description: "Retourne une seule tâche"
+      operationId: "getTodoById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "todoId"
+        in: "path"
+        description: "Identifiant de la tâche à retourner"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Todo"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Todo not found"
+    patch:
+      tags:
+      - "todos"
+      summary: "Met à jour la tâche avec les nouvelles données"
+      description: ""
+      operationId: "updateTodo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "todoId"
+          in: "path"
+          type: "number"
+          description: "Identifiant de la tâche à modifier"
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Nouvelle valeur pour la tâche à mettre à jour"
+          required: true
+          schema:
+            $ref: "#/definitions/Todo"
+      responses:
+        "400":
+          description: "Invalid input"
+    delete:
+      tags:
+      - "todos"
+      summary: "Supprime une tâche"
+      description: ""
+      operationId: "deleteTodo"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "todoId"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Todo not found"
+definitions:
+  Todo:
+    type: "object"
+    required:
+    - "label"
+    - "creationDate"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      label:
+        type: "string"
+      complete:
+        type: "boolean"
+        description: "True si la tâche a été effectuée. Défaut: false."
+        default: false
+      creationDate:
+        type: "string"
+        format: "date-time"
+        description: "Date de création au format ISO 8601"
+      lastModificationDate:
+        type: "string"
+        format: "date-time"
+        description: "Date de la dernière modification, au format ISO 8601"

@@ -1,0 +1,527 @@
+swagger: "2.0"
+info:
+  description: "Ceci est une API pour la creation d'un programme de 'Todo List'."
+  version: "1.0.0"
+  title: "Todo List"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basepath: "/"
+tags:
+- name: "todos"
+  description: "Lister, ajouter, modifier et supprimer des tâches"
+- name: "categories"
+  description: "Lister, ajouter, modifier et supprimer des catégories de tâches"
+- name: "users"
+  description: "Lister, ajouter, modifier"
+schemes:
+- "http"
+paths:
+  /todos:
+    get:
+      tags:
+        - "todos"
+      summary: "Liste toutes les tâches"
+      description: ""
+      operationId: "listTodo"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+    post:
+      tags:
+      - "todos"
+      summary: "Ajouter une nouvelle tâche"
+      description: ""
+      operationId: "addTodo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Tâche à ajouter à la liste"
+        required: true
+        schema:
+          $ref: "#/definitions/Todo"
+      responses:
+        "405":
+          description: "Invalid input"
+  /todos/findByComplete:
+    get:
+      tags:
+      - "todos"
+      summary: "Retrouver les tâches complétées ou en cours."
+      description: ""
+      operationId: "findTodosByComplete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "complete"
+        in: "query"
+        description: "Si la tâche est complétée ou non"
+        required: true
+        type: "boolean"
+        default: true
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+        "400":
+          description: "Invalid complete value"
+  /todos/findByCategory:
+    get:
+      tags:
+      - "todos"
+      summary: "Retrouve les tâches appartenant à une catégorie"
+      description: ""
+      operationId: "findTodosByCategory"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "categories"
+        in: "query"
+        description: "Identifiant de la catégorie des tâches à retrouver"
+        required: true
+        type: "number"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+        "400":
+          description: "Invalid category"
+  /todos/findByOwner:
+    get:
+      tags:
+      - "todos"
+      summary: "Retrouve les tâches appartenant appartenant à un utilisateur"
+      description: ""
+      operationId: "findTodosByOwner"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "users"
+        in: "query"
+        description: "Nom d'utilisateur auquel les tâches doivent appartenir"
+        required: true
+        type: "string"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+        "400":
+          description: "Invalid user"
+  /todos/findByAssignedUser:
+    get:
+      tags:
+      - "todos"
+      summary: "Retrouve les tâches assignée à un utilisateur"
+      description: ""
+      operationId: "findTodosByAssignedUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "users"
+        in: "query"
+        description: "Nom d'utilisateur auquel les tâches doivent êtres assignées"
+        required: true
+        type: "string"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+        "400":
+          description: "Invalid user"
+  /todos/{todoId}:
+    get:
+      tags:
+      - "todos"
+      summary: "Retrouve une tâche par son identifiant"
+      description: "Retourne une seule tâche"
+      operationId: "getTodoById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "todoId"
+        in: "path"
+        description: "Identifiant de la tâche à retourner"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Todo"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Todo not found"
+    put:
+      tags:
+      - "todos"
+      summary: "Met à jour la tâche avec les nouvelles données"
+      description: ""
+      operationId: "updateTodo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "todoId"
+          in: "path"
+          type: "number"
+          description: "Identifiant de la tâche à modifier"
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Tâche à ajouter à la liste"
+          required: true
+          schema:
+            $ref: "#/definitions/Todo"
+      responses:
+        "400":
+          description: "Invalid input"
+    delete:
+      tags:
+      - "todos"
+      summary: "Supprime une tâche"
+      description: ""
+      operationId: "deleteTodo"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "todoId"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Todo not found"
+  /categories:
+    get:
+      tags:
+      - "categories"
+      summary: "Retourne la liste des catégories"
+      description: ""
+      operationId: "listCategories"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Category"
+    post:
+      tags:
+      - "categories"
+      summary: "Ajoute une nouvelle catégorie"
+      description: ""
+      operationId: "addCategory"
+      produces:
+      - "application/json"
+      consumes:
+      - "applcation/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "order placed for purchasing the pet"
+        required: true
+        schema:
+          $ref: "#/definitions/Category"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Category"
+        "400":
+          description: "Invalid Category"
+  /categories/{categoryId}:
+    get:
+      tags:
+      - "categories"
+      summary: "Retrouve une catégorie par son identifiant"
+      description: ""
+      operationId: "getCategoryById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "categoryId"
+        in: "path"
+        description: "Identifiant de la catégorie à retrouver"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Category"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Category not found"
+    put:
+      tags:
+      - "categories"
+      summary: "Modifie la catégorie correspondant à l'identifiant donné"
+      description: ""
+      operationId: "updateCategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "categoryId"
+        in: "path"
+        description: "Identifiant de la catégorie à modifier"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Nouvelles données de la catégorie"
+        required: true
+        schema:
+          $ref: "#/definitions/Category"
+      responses:
+        "400":
+          description: "Invalid input"
+    delete:
+      tags:
+      - "categories"
+      summary: "Supprime la catégorie correspondant à l'identifiant donné"
+      description: ""
+      operationId: "deleteOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "categoryId"
+        in: "path"
+        description: "ID of the order that needs to be deleted"
+        required: true
+        type: "integer"
+        minimum: 1.0
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Order not found"
+  /users:
+    get:
+      tags:
+      - "users"
+      summary: "Retourne la liste des utilisateurs"
+      description: ""
+      operationId: "listUsers"
+      produces:
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+    post:
+      tags:
+      - "users"
+      summary: "Ajoute un utilisateur"
+      description: ""
+      operationId: "addUser"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Le nouvel utilisateur à ajouter."
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "invalid input"
+  /users/{username}:
+    get:
+      tags:
+      - "users"
+      summary: "Retrouve un tuilisateur par son nom"
+      description: ""
+      operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "Nom de l'utilisateur à retrouver"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+    patch:
+      tags:
+      - "users"
+      summary: "Met à jour un utilisateur"
+      description: "This can only be done by the logged in user."
+      operationId: "updateUser"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "name that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "Invalid input"
+        "404":
+          description: "User not found"
+    delete:
+      tags:
+      - "users"
+      summary: "Supprime un utilisateur"
+      description: ""
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "Nom de l'utilisateur à supprimer"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+securityDefinitions:
+  todolist_auth:
+    type: "oauth2"
+    authorizationUrl: "http://localhost:8080/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:todos: "Modifie les tâches"
+      read:todos: "Lis les tâches"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      role:
+        type: "integer"
+        format: "int32"
+        description: "Rôle de l'utilisateur"
+  Todo:
+    type: "object"
+    required:
+    - "label"
+    - "creationDate"
+    - "ownerId"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      categoryId:
+        type: "integer"
+        format: "int64"
+        description: "Identifiant de la catégorie à laquelle la tâche est rattachée"
+      label:
+        type: "string"
+      complete:
+        type: "boolean"
+        description: "True si la tâche a été effectuée. Défaut: false."
+        default: false
+      creationDate:
+        type: "string"
+        format: "date-time"
+        description: "Date de création au format ISO 8601"
+      lastModificationDate:
+        type: "string"
+        format: "date-time"
+        description: "Date de la dernière modification, au format ISO 8601"
+      ownerUsername:
+        type: "string"
+        description: "nom de l'utilisateur qui administre la tâche"
+      assignedTo:
+        type: "dtring"
+        description: "nom de l'utilisateur auquel est assignée la tâche"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
