@@ -1,4 +1,4 @@
-let todos = []
+export let todos = []
 
 /**
  * Récupère une liste de tâches et la stocke dans le tableau todos.
@@ -10,7 +10,7 @@ let todos = []
  * 
  * @return {Promise|void} Une promise permettant de savoir lorsque la tâche est terminée (utile pour tester). Ou rien du tout si ce n'est pas possible.
  */
-function fetchTodos(_page, _limit) {
+export function fetchTodos(_page, _limit) {
 
 }
 
@@ -27,8 +27,8 @@ function fetchTodos(_page, _limit) {
  * 
  * @return {Promise|void} Une Promise permettant de savoir lorsque la tâche est terminée (utile pour tester). Ou rien du tout si ce n'est pas possible.
  */
-function postTodo(todo) {
-
+export function postTodo(todo) {
+   
 }
 
 // postTodo({ id: 0, label: 'Hello World!', completed: false, creationDate: new Date() }).then(() => fetchTodos()).then(() => console.table(todos))
@@ -42,7 +42,7 @@ function postTodo(todo) {
  * 
  * @return {Promise|void} Une Promise permettant de savoir lorsque la tâche est terminée (utile pour tester). Ou rien du tout si ce n'est pas possible.
  */
-function fetchTodo(id) {
+export function fetchTodo(id) {
 
 }
 
@@ -58,8 +58,8 @@ function fetchTodo(id) {
  * 
  * @return {Promise|void} Une Promise permettant de savoir lorsque la tâche est terminée (utile pour tester). Ou rien du tout si ce n'est pas possible.
  */
-function updateTodo(id, todo) {
-
+export function updateTodo(id, todo) {
+   
 }
 
 // updateTodo(4, { label: 'J\'ai changé', complete: true }).then(() => fetchTodo(4)).then(() => console.table(todos))
@@ -73,8 +73,8 @@ function updateTodo(id, todo) {
  * 
  * @return {Promise|void} Une Promise permettant de savoir lorsque la tâche est terminée (utile pour tester). Ou rien du tout si ce n'est pas possible.
  */
-function deleteTodo(id) {
-
+export function deleteTodo(id) {
+    
 }
 
-// deleteTodo(2).then(() => fetchTodos()).then(() => console.table(todos))
+// deleteTodo(3).then(() => fetchTodos()).then(() => console.table(todos))
