@@ -1,0 +1,10 @@
+.failureMessages {
+    max-height: 9999px;
+    overflow: hidden;
+    transition: 200ms ease-in-out;
+}
+.failureMessages.folded {
+    max-height: 0;
+    margin-top: 0;
+    border-top: none;
+}

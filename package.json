@@ -17,7 +17,7 @@
     "start:client": "react-scripts start",
     "start": "npx concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "react-scripts build",
-    "test": "react-scripts test --reporters=jest-html-reporter",
+    "test": "react-scripts test --reporters=default jest-html-reporter",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:4000",
