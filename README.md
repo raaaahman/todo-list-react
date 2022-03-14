@@ -23,13 +23,15 @@ Afin de vous familiariser avec l'API mise en place, mais également avec la mét
 1. Ouvrir le fichier `src/api.js`, il contient des fonctions à remplir. Chaque fonction a un _bloc de documentation_ qui décrit succintement ce qu'elle est sensée accomplir, les paramètres qu'elle reçoit et la valeur qu'elle doit retourner.
 2. Du code permettant de vérifier l'exécution de ces fonctions a été écrit. Pour vérifier le résultat de vos fonctions, décommentez le.
 3. Ouvrir la page `https://localhost:3000/` dans votre navigateur, et ouvrir la console pour voir les messages s'afficher (`ctrl + maj + k` sous Firefox, sinon _Menu > Outils supplémentaires > Outils de développement > Console_).
+4. Lancer la commande `npm test` dans un terminal.
+5. Ouvrir le fichier `index.html` du dossier `coverage` dans un navigateur web. Des tests vont appraître à l'écran, essayez de résoudre chacun d'entre eux dans l'ordre où ils s'affichent.
 
 ### Partie 2: React
 
 Il s'agit de "connecter" l'API avec une interface d'application en React.
 
-1. Si vous avez une application de todo list déjà créée en React, vous pouvez copier/coller son code dans le dossier `src` (attention à ne pas supprimer votre fichier `api.js`).
-2. Vous pouvez réutiliser le code créer dans `api.js` avec quelques modifications: au lieu de modifier le tableau `todos`, il devra se servir des Hooks que vous aurez mis en place.
+1. Si vous avez une application de todo list déjà créée en React, vous pouvez copier/coller son code dans le dossier `src` (attention à ne pas supprimer votre fichier `api.js`, ni le dossier `test`).
+2. Vous pouvez réutiliser le code créer dans `api.js` avec quelques modifications: au lieu de modifier le tableau `todos`, il faudra se servir des Hooks que vous aurez mis en place.
 
 ## Ressources
 
